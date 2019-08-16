@@ -1,20 +1,37 @@
-
+import java.util.ArrayList;
 
 public class NarcissisticNumber {
 
 
     public boolean isNarcissisticNumber(int number) {
-        String numberString = String.valueOf(number);
-        char[] digitChars = numberString.toCharArray();
+
+        ArrayList<Integer> digits = new ArrayList<>();
+        int d ;
         double calculatedNumber = 0;
-
-        for (char digitChar : digitChars) {
-            int digitInt = Character.getNumericValue(digitChar);
-            calculatedNumber = calculatedNumber + Math.pow(digitInt, digitChars.length);
+        int check = number;
+        while (number > 0) {
+            d = number % 10;
+            number = number / 10;
+            digits.add(d);
         }
-
-        return number == calculatedNumber;
+        for (int i = 0; i < digits.size(); i++) {
+            calculatedNumber = calculatedNumber + Math.pow(digits.get(i), digits.size());
+        }
+        return check == calculatedNumber;
     }
+
+
+//       String numberString = String.valueOf(number);
+//        char[] digitChars = numberString.toCharArray();
+//         double calculatedNumber = 0;
+//
+//        for (char digitChar : digitChars) {
+//            int digitInt = Character.getNumericValue(digitChar);
+//            calculatedNumber = calculatedNumber + Math.pow(digitInt, digitChars.length);
+//        }
+//
+//        return number == calculatedNumber;
+//    }
 
 
     public void narcissisticNumbers(int start, int end) {
@@ -27,6 +44,4 @@ public class NarcissisticNumber {
         }
         System.out.println("Total: " + count);
     }
-
-
 }
